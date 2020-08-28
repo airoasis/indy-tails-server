@@ -37,6 +37,7 @@ jobs:
         echo "::set-env name=DOCKERFILE_PATH::docker/Dockerfile.tails-server" 
       
     - name: Build, tag, and push image to Amazon ECR
+      working-directory: main
       run: |
         docker build -f $DOCKERFILE_PATH -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
